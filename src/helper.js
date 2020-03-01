@@ -7,7 +7,7 @@ export const get_movie_list = async query => {
   }
   try {
     const res = await axios.get(
-      `http://www.omdbapi.com/?apikey=e7e8f46&s=${query}`,
+      `https://www.omdbapi.com/?apikey=e7e8f46&s=${query}`,
     );
 
     if (res.data.Error) {
