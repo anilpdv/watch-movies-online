@@ -1,24 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Search from './components/Search';
+import MovieList from './components/moviesList';
+import axios from 'axios';
+import {get_movie_list, get_movie} from './helper';
 
 function App() {
+  const [movies, setState] = useState([]);
+  const searchQuery = async query => {
+    const movies = await get_movie_list(query);
+    console.log(movies);
+    setState(movies);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Search searchQuery={searchQuery} />
+      <MovieList movies={movies} />
     </div>
   );
 }
